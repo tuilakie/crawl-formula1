@@ -105,7 +105,6 @@ export const scraperRacesResult = async (browser, url) => {
         };
       }
       raceResultDom = [...raceResultDom];
-      raceResultDom = [...raceResultDom];
 
       const raceResult = [];
 
