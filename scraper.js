@@ -105,30 +105,18 @@ export const scraperRacesResult = async (browser, url) => {
         };
       }
       raceResultDom = [...raceResultDom];
-      const first = raceResultDom[0].innerText.split("\t");
-      let firstTimes = first[5].split(":");
-      firstTimes = firstTimes.map((time) => Number(time));
-      firstTimes = firstTimes[0] * 3600 + firstTimes[1] * 60 + firstTimes[2];
-      const firstRow = {
-        position: first[0],
-        driver: first[2],
-        team: first[3],
-        laps: first[4],
-        time: firstTimes,
-        points: first[6],
-      };
-      const raceResult = [firstRow];
+      raceResultDom = [...raceResultDom];
 
-      for (let i = 1; i < raceResultDom.length; i++) {
+      const raceResult = [];
+
+      for (let i = 0; i < raceResultDom.length; i++) {
         let row = raceResultDom[i].innerText.split("\t");
         row = {
           position: row[0],
           driver: row[2],
           team: row[3],
           laps: row[4],
-          time: Number(row[5].replace("s", ""))
-            ? row[5]
-            : firstRow.time + Number(row[5].replace("s", "")),
+          time: row[5],
           points: row[6],
         };
         raceResult.push(row);
